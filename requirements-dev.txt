@@ -1,0 +1,5 @@
+# 测试框架依赖（生产部署不需要）
+-r requirements.txt
+
+pytest>=8.0        # FakeClock 是自实现（src/clock.py），无需 freezegun/hypothesis
+fakeredis>=2.20    # RedisBus 契约测试用：纯内存模拟 redis streams+消费者组，无需真 redis

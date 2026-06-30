@@ -1,0 +1,10 @@
+pyyaml>=6.0
+httpx>=0.27
+redis>=5.0
+fastapi>=0.115
+uvicorn>=0.34
+pycryptodome>=3.20
+pydantic>=2.0      # 跨进程契约（Job/AttemptResult/ControlSignal）校验
+
+# 可选：真实 Driver 需要（DryRunDriver 不需要）
+

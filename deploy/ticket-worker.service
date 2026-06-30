@@ -1,0 +1,31 @@
+[Unit]
+# ticket-scheduler Worker 节点 —— systemd 托管（解决「要挂着终端」+「重启要手动 kill」）。
+# 安装：deploy/install-worker.sh（别手抄路径，脚本会把占位符填实）。
+Description=ticket-scheduler worker (%i)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# 配置全在 EnvironmentFile 里——改 WORKER_ID/Redis 地址/密码不用动这个 unit。
+EnvironmentFile=__ENV_FILE__
+WorkingDirectory=__REPO_DIR__
+
+ExecStart=__VENV_PYTHON__ main.py worker
+
+# 崩了/断连/被 OOM 杀都自动拉起——这是「不用挂终端」的关键。
+Restart=always
+RestartSec=3
+# 抢票进程偶发非零退出也要重启（不是只在崩溃时）
+SuccessExitStatus=0 1
+
+# 日志走 journald：journalctl -u ticket-worker 看，不用自己 tee 文件。
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ticket-worker
+
+# 适度加固（worker 要拉黑盒子进程 + 写 config/runtime，不能锁太死）
+NoNewPrivileges=false
+
+[Install]
+WantedBy=multi-user.target

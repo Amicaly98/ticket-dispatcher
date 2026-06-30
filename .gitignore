@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# 运行时生成
+config/runtime/
+config/scheduler.db
+logs/
+*.log
+*.dmp
+*.bin
+
+# 前端
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 敏感配置（不提交真实 cookie/密钥）
+config/settings.yaml
+config/accounts.yaml
+config/config.yaml
+config/scheduler.db-shm
+config/scheduler.db-wal
