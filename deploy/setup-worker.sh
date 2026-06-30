@@ -22,7 +22,7 @@ PROGRAM=""
 MAX_SLOTS="1"
 GH_TOKEN=""
 MIRROR=""
-REPO_URL="https://github.com/<your-org>/ticket-dispatcher.git"
+REPO_URL="https://github.com/Amicaly98/ticket-dispatcher.git"
 INSTALL_DIR="/root/ticket-dispatcher"
 
 while [[ $# -gt 0 ]]; do
@@ -42,14 +42,14 @@ done
 
 if [[ -n "$MIRROR" ]]; then
   case "$MIRROR" in
-    ghproxy)   REPO_URL="https://ghproxy.com/https://github.com/<your-org>/ticket-dispatcher.git" ;;
-    gitclone)  REPO_URL="https://gitclone.com/github.com/<your-org>/ticket-dispatcher.git" ;;
+    ghproxy)   REPO_URL="https://ghproxy.com/https://github.com/Amicaly98/ticket-dispatcher.git" ;;
+    gitclone)  REPO_URL="https://gitclone.com/github.com/Amicaly98/ticket-dispatcher.git" ;;
     *)         REPO_URL="$MIRROR" ;;
   esac
 fi
 
 if [[ -n "$GH_TOKEN" && -z "$MIRROR" ]]; then
-  REPO_URL="https://<user>:${GH_TOKEN}@github.com/<your-org>/ticket-dispatcher.git"
+  REPO_URL="https://<user>:${GH_TOKEN}@github.com/Amicaly98/ticket-dispatcher.git"
 fi
 
 if [[ -z "$WORKER_ID" || -z "$REDIS_HOST" ]]; then
